@@ -21,8 +21,42 @@ def main():
         print("First time?\n Lets get things set up. \n")
         config["apikey"] = input('Enter your API Key: ')
         config["cameraSerial"] = input('Enter the target MV camera\'s serial: ')
-        config["networkID"] = input('Enter the target network\'s ID: ')
-        print("Enter on-person device's MAC addresses, one per line. Press enter when done.\n")
+        
+        print("Lets find your network ID\n~~~\nListing your organizations:")
+        orgs = requests.get( 'https://api.meraki.com/api/v0/organizations',
+            headers={'x-cisco-meraki-api-key': config["apikey"], 'Accept': 'application/json'}
+        )
+        if orgs.text == " ":
+            print("Uoho, seems the API key isnt correct, or isnt set up correct.")
+            sys.exit(0)
+        else:
+            organizations = json.loads(orgs.text)
+            for org in organizations:
+                print("-Organization: " + org["name"] + "  ID: " + org["id"])
+        
+        targetorg = input("\n\nEnter target organization ID: ")
+        networksget = requests.get( 'https://api.meraki.com/api/v0/organizations/' + targetorg + '/networks',
+            headers={'x-cisco-meraki-api-key': config["apikey"], 'Accept': 'application/json'}
+        )
+        if networksget.text == " ":
+            print("Uoho, seems that wasnt a valid organization ID, try again.")
+            sys.exit(0)
+        else:
+            print("~~~~\nHere are the networks in that organization: ")
+            networks = json.loads(networksget.text)
+            for network in networks:
+                print("-Network: " + network["name"] + "  ID: " + network["id"])
+
+        config["networkID"] = input('\n\nEnter the target network\'s ID: ')
+        netidtest = requests.get(
+            'https://api.meraki.com/api/v0/networks/' + config["networkID"],
+            headers={'x-cisco-meraki-api-key': config["apikey"], 'Accept': 'application/json'},
+        )
+        if netidtest.text == " ":
+            print("Uoho, seems that wasnt a valid network ID, try again.")
+            sys.exit(0)
+            
+        print("~~~~\nEnter on-person device's MAC addresses, one per line. Press enter when done.\n")
         while True:
             newtrust = input('MAC: ').lower()
             if newtrust == "":
@@ -37,7 +71,8 @@ def main():
 #        pp.pprint(config)
         configFile.close()
     
-    while 1==1:
+    
+    while True:
         try:
             zones = requests.get( 'https://api.meraki.com/api/v0/devices/' + config["cameraSerial"] + '/camera/analytics/live',
                 headers={'x-cisco-meraki-api-key': config["apikey"], 'Accept': 'application/json'}
