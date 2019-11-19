@@ -10,13 +10,11 @@ The program will guide you through setup, but you need to do a few things first:
 3. Run monitorMV.py
 
 ## Output
-Currently the program simply writes to a .log file, 'motionData.log', when a person is detected, and it determines you are away from home. <br><br>
+Currently the program simply writes to a .log file, 'motionData.log', when a person is detected, and it determines you are away from home. The main purpose of the program is to provide the actual filtering of data in such a way that allows the end user to take whatever actions they may want using the data. <br><br>
 I decided against including code for email notifications in this version, as doing so requires linking an SMTP server to the application, and if you can figure out how to do that for whatever email service you use, you can likely implement that funcionality in the program yourself. <br><br>
-The main purpose of the program is to provide the actual filtering of alerts in such a way that allows the end user to take whatever actions they may want using the data. 
 
 
 ## Future plans
 * Thread client detail parsing to improve speed. 
 * Implement Webhooks to allow processing of motion events. 
-* Implement email notifications. 
-* Actual GUI. 
+* GUI. 
