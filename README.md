@@ -9,6 +9,11 @@ The program will guide you through setup, but you need to do a few things first:
 2. Enable MVSense for the target camera. Record the cameras serial. (If your camera supports MVSense, you should have 10 free licenses.)
 3. Run monitorMV.py
 
+## Output
+Currently the program simply writes to a .log file, 'motionData.log', when a person is detected, and it determines you are away from home. <br>
+I decided against including code for email notifications in this version, as doing so requires linking an SMTP server to the application, and if you can figure out how to do that for whatever email service you use, you can likely implement that funcionality in the program yourself. <br>
+The main purpose of the program is to provide the actual filtering of alerts in such a way that allows the end user to take whatever actions they may want using the data. 
+
 
 ## Future plans
 * Thread client detail parsing to improve speed. 
