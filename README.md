@@ -1,5 +1,5 @@
 # SmarterSecurityCamera-MVSense
-A program for filtering person detection data from the MVSense API on Meraki smart security cameras. 
+A example program for filtering person detection data from the MVSense API on Meraki smart security cameras. Intended for setups with one main camera to observe.
 
 By remembering a few network / bluetooth devices that you usually take with you when you leave the house, the program can check if you are likely home or not when it sees a 'person'
 
