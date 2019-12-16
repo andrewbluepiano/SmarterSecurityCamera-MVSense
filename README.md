@@ -17,5 +17,4 @@ I decided against including code for email notifications in this version, as doi
 
 
 ## Future plans
-* Thread client detail parsing to improve speed. 
-* GUI. 
+* A different version of this idea implemented with a GUI and Webhooks for overall motion detection from dashboard. 
