@@ -18,3 +18,4 @@ I decided against including code for email notifications in this version, as doi
 
 ## Future plans
 * A different version of this idea implemented with a GUI and Webhooks for overall motion detection from dashboard. 
+- I did this! https://github.com/andrewbluepiano/SmarterMVMotionWebhookAlerts
